@@ -1,0 +1,6 @@
+o que ta dentro de scripts em package-json cria um atalho para rodar o que ta dentro de aspas
+
+npm install mysql2
+npm install nodemon
+npm install express
+npm install mysql2
