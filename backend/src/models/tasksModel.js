@@ -6,12 +6,14 @@ const getAll = async ()=>{//é assincrona porque tenho de esperar que ela busce 
 }
 
 const createTask = async (task)=>{
-const {title} = task
+const {title} = task//tirar a propriedade title de tasl
 const dateUTC = new Date(Date.now()).toUTCString();
-const query = 'INSERT INTO tasks(title, status, created_at) Values (?,?,?)'
+const query = 'INSERT INTO tasks(title, status, created_at) VALUES (?, ?, ?)'
 const [createTask] = await connection.execute(query, [title,'pendente',dateUTC ])
-return{insertID: createTask};
+return {insertID: createTask.insertId};
 }
+
+
 
 const deleteTask = async (id)=>{
   const [removedTask] = await connection.execute('DELETE FROM tasks WHERE id = ?', [id])
@@ -20,7 +22,7 @@ const deleteTask = async (id)=>{
 
 const updateTask = async (id, task)=>{
   const {title, status} = task;  
-  const [updateTask] = await connection.execute('UPDATE tasks SET title = ?, status = ? where id = ?' [title, status, id ])
+  const [updateTask] = await connection.execute('UPDATE tasks SET title = ?, status = ? WHERE id = ?' [title, status, id ])
   return updateTask
 }
 
