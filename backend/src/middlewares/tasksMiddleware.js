@@ -14,7 +14,7 @@ const validateStatus = (req, res, next)=>{
     if(body.status == undefined){
       return res.status(400).json({message: 'The field "status" is required'})
     }
-    if(body.staus == ''){
+    if(body.status == ''){
       return res.status(400).json({message: 'The status cannot be empty'})
     }
     next();
