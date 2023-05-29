@@ -21,8 +21,9 @@ const deleteTask = async (id)=>{
 }
 
 const updateTask = async (id, task)=>{
-  const {title, status} = task;  
-  const [updateTask] = await connection.execute('UPDATE tasks SET title = ?, status = ? WHERE id = ?' [title, status, id ])
+  const query = 'UPDATE tasks SET title = ?, status = ? WHERE id = ?'
+  const {title, status} = task;  //task retorna um objeto, eu pego o valor do title e do status
+  const [updateTask] = await connection.execute(query, [title, status, id ])
   return updateTask
 }
 
