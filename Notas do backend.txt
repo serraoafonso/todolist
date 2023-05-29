@@ -4,3 +4,4 @@ npm install mysql2
 npm install nodemon
 npm install express
 npm install doteenv
+npm install cors
