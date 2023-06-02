@@ -49,8 +49,7 @@ const createSelect = (value)=>{
   </option>`
 
     const select = createElement('select', '', options);
-
-    select.value = 'concluida'
+    select.value = value
 
     return select
 }
@@ -60,13 +59,13 @@ const createRow = (task)=>{
   const {id, title, created_at, status} = task;
  
   const tr = document.createElement('tr');
-  const tdTitle = createElement('td', 'Título da task')
+  const tdTitle = createElement('td', title)
   const tdCreatedAt = createElement('td', formatDate(created_at) );
   const tdStatus = createElement('td');
   const tActions = createElement('td');
   const select = createSelect(status);
 
-select.addEventListener('change', ({target})=>updateTask({...task, status:target.value}))//pega todas os elementos de task e manda um por um
+  select.addEventListener('change', ({target})=>updateTask({...task, status:target.value}))//pega todas os elementos de task e manda um por um
 
   const editBtn = createElement('button','', "<span class='material-symbols-outlined'>edit</span>");
   const deleteBtn = createElement('button','', "<span class='material-symbols-outlined'>delete</span>");
@@ -87,7 +86,7 @@ select.addEventListener('change', ({target})=>updateTask({...task, status:target
   editForm.addEventListener('submit', (event)=>{
     event.preventDefault();
 
-    updateTask({id, title:editInput.value, status: status})//posso so deixar so um status
+    updateTask({id, title:editInput.value, status})//
   })
 
   editBtn.addEventListener('click', ()=>{
@@ -115,7 +114,7 @@ select.addEventListener('change', ({target})=>updateTask({...task, status:target
 const loadTaks = async()=>{
     const tasks = await fetchTaks()//busca o valor da fetch tasks
 
-tbody.innerHTML = ''
+  tbody.innerHTML = ''
 
     tasks.forEach((task)=>{
         const tr = createRow(task);
